@@ -17,8 +17,16 @@ import pandas
 # letter. Print the result of calling your function on n_arr.
 n_arr = ["Mike", "Linus", "Grace"]
 
+def filter_names(names, letters) :
+    ret = []
+    for n in names:
+        if letters in n:
+            ret.append(n)
+    return ret
 
+print(filter_names(n_arr, "a"))
 # BONUS: Do it without a loop
+
 
 
 #####################
@@ -36,7 +44,12 @@ print()
 
 # Change the following column names in your data frame
 # 2012-13 Tuition and fees  -> tuition.2012
+ed_data = ed_data.rename(columns = {"2012-13 Tution and fees" : "tuition.2012",
+                                    "Sector name" : "sector",
+                                    "2014-15 Tuition" : "tuition.2014",
+                                    "Name of insitution" : "insitution"})
 # 2014-15 Tuition and fees  -> tuition.2014
+
 # Sectior name              -> sector
 # Name of institution       -> instituion
 
@@ -44,6 +57,10 @@ print()
 # How many UNIQUE institutions are there? What data structure could you
 # leverage?
 
+inst = ed_data.get("institution")
+num_inst = len(set(inst))
+
+print("Number of unique institutions " + num_inst)
 
 # What types of schools are there? How many of each type are there?
 # Hint: You can do this using pandas or stock python
